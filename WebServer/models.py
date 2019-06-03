@@ -34,6 +34,7 @@ class TestCase(models.Model):
     Label = models.CharField(max_length=200, blank=True, verbose_name='测试用例标签')
     FrontSQL = models.CharField(max_length=200, blank=True, verbose_name='前置数据命令')
     ApiPath = models.CharField(max_length=200, blank=False, verbose_name='接口路径')
+    Headers = models.CharField(max_length=200, blank=False, verbose_name='接口头信息')
     RequestMethod = models.CharField(max_length=200, blank=False, verbose_name='请求方法')
     RequestData = models.TextField(max_length=50000, blank=False, verbose_name='接口请求体')
     ReponseCheckType = models.CharField(max_length=2, choices=CHECK_TYPE,verbose_name='验证机制')
@@ -78,9 +79,6 @@ class TestResults(models.Model):
 
     def __str__(self):
         return self.Name
-
-
-
 
 class BaseConfig(models.Model):
     id = models.AutoField(primary_key=True)

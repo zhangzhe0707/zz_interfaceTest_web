@@ -57,14 +57,14 @@ class BaseHttp:
         except BaseException as e:
             self.logger.error("change_type 转换错误:{0}".format(e))
 
-    def get(self, uri, params):
+    def get(self, uri, params,headers):
         """
         Get请求方法
         :return:
         """
         # 拼装接口请求地址
         url = self.url + uri
-        headers = {'Content-Type': "application/x-www-form-urlencoded"}
+        # headers = {'Content-Type': "application/x-www-form-urlencoded"}
         try:
             response = requests.get(url, headers=headers, params=params)
             # self.log.info("GET 请求成功，返回体内容：{0} ".format(response))
@@ -73,11 +73,11 @@ class BaseHttp:
         except TimeoutError:
             self.logger.error("请求超时失败!")
 
-    def post(self, uri, data):
+    def post(self, uri, data,headers):
         """
         Post 请求方法
         """
-        headers = {'Content-Type': "application/x-www-form-urlencoded"}
+        # headers = {'Content-Type': "application/x-www-form-urlencoded"}
         # 拼装接口请求地址
         url = self.url + uri
         try:
@@ -90,12 +90,12 @@ class BaseHttp:
             self.logger.error("请求超时失败!")
             return None
 
-    def post_with_json(self, uri, data):
+    def post_with_json(self, uri, data,headers):
         """
         Post 请求，数据体为 json
         :return:
         """
-        headers = {'Content-Type': 'application/json'}
+        # headers = {'Content-Type': 'application/json'}
         # 拼装接口请求地址
         url = self.url + uri
         try:

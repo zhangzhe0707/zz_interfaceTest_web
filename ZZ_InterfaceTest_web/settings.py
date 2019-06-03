@@ -24,9 +24,9 @@ RESPORTS_DIR_PATH = os.path.join(BASE_DIR, 'reports')
 SECRET_KEY = 'y#02$kmsv%q3+7k@m4g1v-&=296dl7j61v+3gg5*wvext9c!2o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -125,6 +125,9 @@ TEMPLATES_DIR = [
         ],
     }
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 BASE_LOG_DIR = os.path.join(BASE_DIR, "log")
 LOGGING = {

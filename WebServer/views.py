@@ -32,13 +32,13 @@ def runTestCase(request, envName, caseName):
     for case in case_data:
         # 发送接口请求
         if case.RequestMethod == 'post':
-            response = baseHttp.post(case.ApiPath, basecode.body_decode(case.RequestData))
+            response = baseHttp.post(case.ApiPath, basecode.body_decode(case.RequestData), case.Headers)
             logger.info('接口返回结果%s' % response)
         elif case.RequestMethod == 'get':
-            response = baseHttp.get(case.ApiPath, basecode.body_decode(case.RequestData))
+            response = baseHttp.get(case.ApiPath, basecode.body_decode(case.RequestData), case.Headers)
             logger.info('接口返回结果%s' % response)
         elif case.RequestMethod == "post_with_json":
-            response = baseHttp.post_with_json(case.ApiPath, basecode.body_decode(case.RequestData))
+            response = baseHttp.post_with_json(case.ApiPath, basecode.body_decode(case.RequestData), case.Headers)
             logger.info('接口返回结果%s' % response)
         else:
             logger.info("未找到正确的 Method 类型")
@@ -46,9 +46,10 @@ def runTestCase(request, envName, caseName):
         response_data = json.loads(response.content)
         response_status_code = response.status_code
         if case.ReponseCheckType == 'FM':
-            diff(response_data,json.loads(case.ReponseCheckPoint))
-        # elif case.ReponseCheckPoint is 'PM':
-        #     for response
+            diff(response_data, json.loads(case.ReponseCheckPoint))
+        elif case.ReponseCheckPoint is 'PM':
+            for point in case.ReponseCheckPoint:
+                assert response_data in point
     #
     # TestResults.objects.create(Name=test_results_name)
 

@@ -124,6 +124,22 @@ class BaseCode:
 
         return case_data
 
+    def body_decode(self,request):
+        request_str = request.body.decode(
+            "utf-8",
+            "ignore").replace(
+            '\r',
+            '').replace(
+            '\n',
+            '').replace(
+            "'",
+            '"').replace(
+            ' ',
+            '').replace(
+            '\\',
+            '')
+        return request_str
+
 
 if __name__ == "__main__":
     dc = BaseCode()
