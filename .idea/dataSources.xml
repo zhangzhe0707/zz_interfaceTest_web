@@ -24,18 +24,15 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="@localhost" uuid="14318c23-01b1-41c0-a2a2-c1813441614e">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="Django default" uuid="7cdfb2bc-12c7-45ac-bb01-4cb9cf5e99b0">
+      <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/ZZ_InterfaceTest_web/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
       <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="yearIsDateType" value="false" />
+        <property name="enable_load_extension" value="true" />
       </driver-properties>
     </data-source>
   </component>
