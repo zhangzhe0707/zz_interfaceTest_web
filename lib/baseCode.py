@@ -90,11 +90,17 @@ class BaseCode:
         case_data = []
 
         if name is None and label is None:
-            db_data = db.get_all_data('Select * from WebServer_testcase')
+            db_data = db.get_all_data('Select id, name, label, frontsql, apipath,requestmethod,requestdata,'
+                                      'reponsechecktype, reponsecheckpoint, httpcodecheck,Headers '
+                                      'from WebServer_testcase')
         elif name is not None:
-            db_data = db.get_all_data('Select * from WebServer_testcase where Name={0}'.format(name))
+            db_data = db.get_all_data('Select id, name, label, frontsql, apipath,requestmethod,requestdata,'
+                                      'reponsechecktype, reponsecheckpoint, httpcodecheck,Headers '
+                                      'from WebServer_testcase where Name={0}'.format(name))
         elif label is not None:
-            db_data = db.get_all_data('Select * from WebServer_testcase where Label={0}'.format(label))
+            db_data = db.get_all_data('Select id, name, label, frontsql, apipath,requestmethod,requestdata,'
+                                      'reponsechecktype, reponsecheckpoint, httpcodecheck,Headers '
+                                      'from WebServer_testcase where Label={0}'.format(label))
 
         if db_data:
             self.logger.info('测试用例{0}完成测试数据读取.'.format(db_data))
@@ -104,6 +110,7 @@ class BaseCode:
                 label = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_label')]
                 front_sql = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_front_sql')]
                 api_path = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_api_path')]
+                header = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_headers')]
                 method = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_method')]
                 request_data = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_request_data')]
                 response_check_type = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_response_check_type')]
@@ -111,7 +118,7 @@ class BaseCode:
                 http_code_check = db_itme[self.LOCAL_READ_CONFIG.get_db_index('case_http_code_check')]
 
                 case_dict = {'caseNo': no, 'caseName': name, 'caseLabel': label, 'caseFrontSQL': front_sql,
-                             'caseUri': api_path,
+                             'caseUri': api_path,'header':header,
                              'caseData': request_data, 'caseMethod': method,
                              'caseResponseCheckType': response_check_type,
                              'caseResponseCheckPoint': response_check_point,
